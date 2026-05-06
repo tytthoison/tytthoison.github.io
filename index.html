@@ -2,55 +2,143 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Trạm Y Tế</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trạm Y Tế Xã</title>
     <style>
+        :root {
+            --primary-color: #2e7d32;
+            --secondary-color: #a5d6a7;
+            --text-color: #333;
+        }
+
         body {
-            font-family: Arial;
+            font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0;
+            background-color: #f9f9f9;
+            color: var(--text-color);
         }
 
         /* MENU */
         .menu {
-            background: #2e7d32;
-            padding: 10px;
+            background: var(--primary-color);
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         .menu a {
             color: white;
-            margin: 15px;
+            margin: 0 20px;
             text-decoration: none;
             font-weight: bold;
+            transition: 0.3s;
+        }
+        .menu a:hover {
+            color: var(--secondary-color);
         }
 
         /* BANNER */
         .banner {
-            background: #a5d6a7;
-            padding: 40px;
+            background: linear-gradient(135deg, #2e7d32 0%, #81c784 100%);
+            color: white;
+            padding: 50px 20px;
             text-align: center;
         }
 
-        /* CONTENT */
-        .container {
-            padding: 20px;
+        /* CONTAINER CHÍNH */
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 0 20px;
         }
 
-        .post {
-            border-bottom: 1px solid #ccc;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-left: 4px solid var(--primary-color);
+            padding-left: 10px;
+            margin-top: 0;
+        }
+
+        /* PHẦN TIN TỨC CUỘN TỰ ĐỘNG */
+        .news-scroll-container {
+            height: 250px; /* Chiều cao vùng hiển thị */
+            overflow: hidden;
+            position: relative;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            background: #fff;
+        }
+
+        .news-content {
+            position: absolute;
+            width: 100%;
+            animation: scrollUp 15s linear infinite; /* Chạy liên tục */
+        }
+
+        /* Khi rê chuột vào thì dừng lại */
+        .news-scroll-container:hover .news-content {
+            animation-play-state: paused;
+        }
+
+        .news-item {
+            padding: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        .news-item a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        .news-item a:hover {
+            color: var(--primary-color);
+        }
+
+        @keyframes scrollUp {
+            0% { top: 0; }
+            100% { top: -100%; } /* Điều chỉnh tùy theo số lượng tin */
+        }
+
+        /* THÔNG BÁO TIÊM CHỦNG */
+        .vaccine-box {
+            background: #e8f5e9;
+            border: 2px solid var(--primary-color);
+            text-align: center;
+        }
+        .highlight-date {
+            font-size: 1.5em;
+            color: #d32f2f;
+            font-weight: bold;
+            display: block;
+            margin: 10px 0;
         }
 
         /* FOOTER */
         .footer {
-            background: #2e7d32;
+            background: var(--primary-color);
             color: white;
             text-align: center;
-            padding: 10px;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-content { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <!-- MENU -->
     <div class="menu">
         <a href="#">Trang chủ</a>
         <a href="#">Giới thiệu</a>
@@ -58,35 +146,64 @@
         <a href="#">Liên hệ</a>
     </div>
 
-    <!-- BANNER -->
     <div class="banner">
         <h1>TRẠM Y TẾ XÃ</h1>
-        <p>Chăm sóc sức khỏe cộng đồng</p>
+        <p>Chăm sóc sức khỏe cộng đồng - Tận tâm, chu đáo</p>
     </div>
 
-    <!-- NỘI DUNG -->
-    <div class="container">
-        <h2>Tin tức mới</h2>
-
-        <div class="post">
-            <h3>Khám sức khỏe định kỳ</h3>
-            <p>Trạm y tế tổ chức khám sức khỏe miễn phí cho người dân vào ngày 10/6.</p>
+    <div class="main-content">
+        <div class="left-col">
+            <div class="card">
+                <h2>Công tác Trạm Y tế</h2>
+                <div class="post">
+                    <h3>Khám sức khỏe định kỳ</h3>
+                    <p>Trạm y tế tổ chức khám sức khỏe miễn phí cho người dân vào ngày 10/6 sắp tới. Kính mời bà con đến đúng giờ.</p>
+                </div>
+                <div class="post" style="border-top: 1px solid #eee; padding-top: 15px;">
+                    <h3>Công tác vệ sinh môi trường</h3>
+                    <p>Phối hợp với đoàn thanh niên ra quân dọn dẹp vệ sinh đường làng ngõ xóm, đảm bảo môi trường sống trong lành.</p>
+                </div>
+            </div>
         </div>
 
-        <div class="post">
-            <h3>Tiêm chủng cho trẻ</h3>
-            <p>Chương trình tiêm chủng mở rộng diễn ra hàng tháng tại trạm.</p>
-        </div>
+        <div class="right-col">
+            <div class="card vaccine-box">
+                <h2>Lịch Tiêm Chủng</h2>
+                <p>Ngày tiêm chủng tiếp theo:</p>
+                <span class="highlight-date">11 / 05 / 2026</span>
+                <p><small>(Vui lòng mang theo sổ tiêm chủng của bé)</small></p>
+            </div>
 
-        <div class="post">
-            <h3>Phòng chống dịch bệnh</h3>
-            <p>Hướng dẫn người dân cách phòng chống sốt xuất huyết.</p>
+            <div class="card">
+                <h2>Tin tức mới</h2>
+                <div class="news-scroll-container">
+                    <div class="news-content">
+                        <div class="news-item">
+                            <a href="#">• Hướng dẫn chăm sóc trẻ khi giao mùa</a>
+                        </div>
+                        <div class="news-item">
+                            <a href="#">• Thông báo về việc cấp thẻ BHYT mới</a>
+                        </div>
+                        <div class="news-item">
+                            <a href="#">• Cách nhận biết thực phẩm an toàn</a>
+                        </div>
+                        <div class="news-item">
+                            <a href="#">• Tầm quan trọng của việc tập thể dục</a>
+                        </div>
+                        <div class="news-item">
+                            <a href="#">• Thông tin về chương trình sữa học đường</a>
+                        </div>
+                        <div class="news-item">
+                            <a href="#">• Hướng dẫn chăm sóc trẻ khi giao mùa</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- FOOTER -->
     <div class="footer">
-        <p>© 2026 Trạm Y Tế | Hotline: 0123 456 789</p>
+        <p>© 2026 Trạm Y Tế Xã | Hotline hỗ trợ: 0123 456 789</p>
     </div>
 
 </body>
