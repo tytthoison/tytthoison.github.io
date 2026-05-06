@@ -6,206 +6,291 @@
     <title>Trạm Y Tế Phường Thới Sơn</title>
     <style>
         :root {
-            --primary-color: #2e7d32;
-            --secondary-color: #a5d6a7;
-            --text-color: #333;
+            --primary-blue: #0054a5; /* Màu xanh y tế Châu Đốc */
+            --light-blue: #e3f2fd;
+            --accent-red: #d32f2f;
+            --text-dark: #2c3e50;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0;
-            background-color: #f4f4f4;
-            color: var(--text-color);
+            background-color: #f0f2f5;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* TOPBAR - CHẠY CHỮ */
+        .top-ticker {
+            background: #fff;
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .ticker-content {
+            display: inline-block;
+            animation: ticker 25s linear infinite;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        @keyframes ticker {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
 
         /* MENU */
         .menu {
-            background: var(--primary-color);
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background: var(--primary-blue);
+            padding: 0;
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .menu-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
         }
         .menu a {
             color: white;
-            margin: 0 20px;
+            padding: 18px 25px;
             text-decoration: none;
             font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9em;
             transition: 0.3s;
         }
         .menu a:hover {
-            color: var(--secondary-color);
+            background: rgba(255,255,255,0.2);
         }
 
         /* BANNER */
         .banner {
-            background: linear-gradient(135deg, #2e7d32 0%, #81c784 100%);
+            background: linear-gradient(rgba(0, 84, 165, 0.8), rgba(0, 84, 165, 0.8)), 
+                        url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
             color: white;
-            padding: 60px 20px;
+            padding: 70px 20px;
             text-align: center;
         }
+        .banner h1 { margin: 0; font-size: 2.5em; letter-spacing: 1px; }
 
-        /* CONTAINER CHÍNH - FIX LỖI CHIA CỘT */
+        /* MAIN CONTENT */
         .main-content {
             display: grid;
-            grid-template-columns: 2fr 1fr; /* Chia 2 cột rõ rệt */
+            grid-template-columns: 2fr 1fr;
             gap: 25px;
             max-width: 1100px;
             margin: 30px auto;
             padding: 0 20px;
-            align-items: start;
         }
 
         .card {
             background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+            overflow: hidden;
+            border-top: 4px solid var(--primary-blue);
         }
 
-        h2 {
-            color: var(--primary-color);
-            border-left: 5px solid var(--primary-color);
-            padding-left: 15px;
-            margin-top: 0;
-            font-size: 1.4em;
+        .card-header {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .card-header h2 {
+            margin: 0;
+            font-size: 1.2em;
+            color: var(--primary-blue);
+            text-transform: uppercase;
         }
 
-        /* TIN TỨC CUỘN */
+        .card-body { padding: 20px; }
+
+        /* TIN TỨC CUỘN DỌC */
         .news-scroll-container {
-            height: 280px;
+            height: 300px;
             overflow: hidden;
             position: relative;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            background: #fff;
         }
-
         .news-content {
             position: absolute;
             width: 100%;
-            animation: scrollUp 20s linear infinite;
+            animation: scrollUp 15s linear infinite;
         }
-
-        .news-scroll-container:hover .news-content {
-            animation-play-state: paused;
-        }
-
+        .news-content:hover { animation-play-state: paused; }
         .news-item {
-            padding: 15px;
-            border-bottom: 1px dashed #eee;
+            padding: 12px 0;
+            border-bottom: 1px solid #f1f1f1;
         }
         .news-item a {
             text-decoration: none;
-            color: var(--text-color);
+            color: #444;
             font-weight: 500;
-            display: block;
+            transition: 0.2s;
         }
-        .news-item a:hover {
-            color: var(--primary-color);
-        }
+        .news-item a:hover { color: var(--primary-blue); padding-left: 5px; }
 
         @keyframes scrollUp {
             0% { top: 0; }
             100% { top: -100%; }
         }
 
-        /* THÔNG BÁO TIÊM CHỦNG */
-        .vaccine-box {
-            background: #e8f5e9;
-            border: 2px solid var(--primary-color);
+        /* LỊCH TIÊM CHỦNG */
+        .vaccine-highlight {
+            background: var(--light-blue);
             text-align: center;
+            padding: 20px;
+            border-radius: 8px;
         }
-        .highlight-date {
-            font-size: 2em;
-            color: #d32f2f;
+        .date-circle {
+            background: var(--accent-red);
+            color: white;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
             font-weight: bold;
-            display: block;
-            margin: 10px 0;
+            margin: 15px auto;
+            flex-direction: column;
+            box-shadow: 0 4px 10px rgba(211, 47, 47, 0.3);
         }
 
         /* FOOTER */
         .footer {
-            background: var(--primary-color);
-            color: white;
-            text-align: center;
-            padding: 30px;
+            background: #1a252f;
+            color: #ecf0f1;
+            padding: 40px 20px;
             margin-top: 50px;
         }
+        .footer-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 40px;
+        }
+        .footer-col h4 {
+            color: #fff;
+            border-bottom: 2px solid var(--primary-blue);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
 
-        /* Responsive cho Mobile */
-        @media (max-width: 850px) {
-            .main-content { grid-template-columns: 1fr; }
+        @media (max-width: 768px) {
+            .main-content, .footer-grid { grid-template-columns: 1fr; }
+            .menu-container { flex-direction: column; }
         }
     </style>
 </head>
 <body>
 
-    <div class="menu">
-        <a href="#">Trang chủ</a>
-        <a href="#">Giới thiệu</a>
-        <a href="#">Tin tức</a>
-        <a href="#">Liên hệ</a>
+    <!-- THÔNG BÁO CHẠY NGANG -->
+    <div class="top-ticker">
+        <div class="ticker-content">
+            THÔNG BÁO: Kế hoạch khám sức khỏe định kỳ cho người cao tuổi sẽ bắt đầu từ tuần sau - Bà con vui lòng theo dõi lịch tiêm chủng ngày 11/05/2026!
+        </div>
     </div>
-    
+
+    <!-- MENU -->
+    <div class="menu">
+        <div class="menu-container">
+            <a href="#">Trang chủ</a>
+            <a href="#">Giới thiệu</a>
+            <a href="#">Tin tức</a>
+            <a href="#">Hoạt động chuyên môn</a>
+            <a href="#">Liên hệ</a>
+        </div>
+    </div>
+
+    <!-- BANNER -->
     <div class="banner">
         <h1>TRẠM Y TẾ PHƯỜNG THỚI SƠN</h1>
-        <p>Tận tâm chăm sóc - Nâng tầm sức khỏe cộng đồng</p>
+        <p>Cung cấp dịch vụ y tế chất lượng - Vì sức khỏe nhân dân Phường Thới Sơn</p>
     </div>
 
     <div class="main-content">
-        <!-- CỘT TRÁI -->
+        <!-- BÊN TRÁI: CÔNG TÁC -->
         <div class="left-col">
             <div class="card">
-                <h2>Công tác Trạm Y tế</h2>
-                <div class="post">
-                    <h3>Khám sức khỏe định kỳ</h3>
-                    <p>Trạm y tế tổ chức khám sức khỏe miễn phí cho người dân vào ngày 10/6 sắp tới. Kính mời bà con đến đúng giờ.</p>
-                </div>
-                <div class="post" style="border-top: 1px solid #eee; margin-top: 15px; padding-top: 15px;">
-                    <h3>Công tác vệ sinh môi trường</h3>
-                    <p>Phối hợp với đoàn thanh niên ra quân dọn dẹp vệ sinh đường làng ngõ xóm, đảm bảo môi trường sống trong lành.</p>
-                </div>
-                <div class="post" style="border-top: 1px solid #eee; margin-top: 15px; padding-top: 15px;">
-                    <h3>Quản lý sức khỏe người cao tuổi</h3>
-                    <p>Lập hồ sơ theo dõi sức khỏe và tư vấn chế độ dinh dưỡng cho người cao tuổi trên địa bàn phường.</p>
+                <div class="card-header"><h2>Công tác Trạm Y tế</h2></div>
+                <div class="card-body">
+                    <div class="news-item">
+                        <h3 style="color:var(--primary-blue); margin: 0 0 10px 0;">Công tác khám sàng lọc bệnh không lây nhiễm</h3>
+                        <p>Trạm tiến hành đo huyết áp, thử đường huyết miễn phí cho người dân từ 40 tuổi trở lên.</p>
+                    </div>
+                    <div class="news-item" style="margin-top:20px;">
+                        <h3 style="color:var(--primary-blue); margin: 0 0 10px 0;">Công tác vệ sinh môi trường</h3>
+                        <p>Phối hợp với chính quyền địa phương tuyên truyền diệt lăng quăng tại các khu phố.</p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- CỘT PHẢI -->
+        <!-- BÊN PHẢI: TIÊM CHỦNG & TIN TỨC CUỘN -->
         <div class="right-col">
-            <div class="card vaccine-box">
-                <h2>Lịch Tiêm Chủng</h2>
-                <p>Ngày tiêm chủng tiếp theo:</p>
-                <span class="highlight-date">11 / 05 / 2026</span>
-                <p><small>(Vui lòng mang theo sổ tiêm chủng của bé)</small></p>
+            <div class="card" style="border-top-color: var(--accent-red);">
+                <div class="card-header"><h2>Lịch Tiêm Chủng</h2></div>
+                <div class="card-body">
+                    <div class="vaccine-highlight">
+                        <p>Ngày tiêm chủng kế tiếp:</p>
+                        <div class="date-circle">
+                            11<span>05</span>
+                        </div>
+                        <p><strong>Thứ Hai - 08:00 AM</strong></p>
+                    </div>
+                </div>
             </div>
 
             <div class="card">
-                <h2>Tin tức mới</h2>
-                <div class="news-scroll-container">
-                    <div class="news-content">
-                        <div class="news-item"><a href="#">• Hướng dẫn chăm sóc trẻ khi giao mùa</a></div>
-                        <div class="news-item"><a href="#">• Thông báo về việc cấp thẻ BHYT mới</a></div>
-                        <div class="news-item"><a href="#">• Cách nhận biết thực phẩm an toàn</a></div>
-                        <div class="news-item"><a href="#">• Tầm quan trọng của việc tập thể dục</a></div>
-                        <div class="news-item"><a href="#">• Thông tin về chương trình sữa học đường</a></div>
-                        <!-- Lặp lại tin đầu để cuộn mượt hơn -->
-                        <div class="news-item"><a href="#">• Hướng dẫn chăm sóc trẻ khi giao mùa</a></div>
+                <div class="card-header"><h2>Tin tức mới</h2></div>
+                <div class="card-body">
+                    <div class="news-scroll-container">
+                        <div class="news-content">
+                            <div class="news-item"><a href="#">• Quy trình đăng ký BHYT tại trạm</a></div>
+                            <div class="news-item"><a href="#">• Cách phòng ngừa sốt xuất huyết mùa mưa</a></div>
+                            <div class="news-item"><a href="#">• Thông báo về việc cấp phát thuốc miễn phí</a></div>
+                            <div class="news-item"><a href="#">• Kiến thức dinh dưỡng cho trẻ nhỏ</a></div>
+                            <div class="news-item"><a href="#">• Lịch trực của y bác sĩ tuần này</a></div>
+                            <div class="news-item"><a href="#">• Quy trình đăng ký BHYT tại trạm</a></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="footer">
-        <p>© 2026 Trạm Y Tế Phường Thới Sơn | Hotline hỗ trợ: 0123 456 789</p>
-        <p><small>Địa chỉ: Phường Thới Sơn, TP. Châu Đốc, An Giang</small></p>
-    </div>
+    <!-- FOOTER CHUYÊN NGHIỆP -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>TRẠM Y TẾ THỚI SƠN</h4>
+                <p>Luôn nỗ lực mang lại dịch vụ chăm sóc sức khỏe tốt nhất cho cộng đồng tại địa bàn phường.</p>
+            </div>
+            <div class="footer-col">
+                <h4>LIÊN KẾT NHANH</h4>
+                <p>• Bộ Y tế Việt Nam</p>
+                <p>• Sở Y tế An Giang</p>
+                <p>• TTYT Thành phố Châu Đốc</p>
+            </div>
+            <div class="footer-col">
+                <h4>LIÊN HỆ</h4>
+                <p>📍 Địa chỉ: Phường Thới Sơn, TP. Châu Đốc</p>
+                <p>📞 Hotline: 0123 456 789</p>
+                <p>📧 Email: tytthaison@gmail.com</p>
+            </div>
+        </div>
+        <div style="text-align: center; border-top: 1px solid #34495e; margin-top: 30px; padding-top: 20px;">
+            <p>© 2026 Bản quyền thuộc về Trạm Y Tế Phường Thới Sơn</p>
+        </div>
+    </footer>
 
 </body>
 </html>
