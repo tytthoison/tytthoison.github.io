@@ -12,9 +12,9 @@
         }
 
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            background-color: #f9f9f9;
+            background-color: #f4f4f4;
             color: var(--text-color);
         }
 
@@ -24,6 +24,9 @@
             padding: 15px;
             text-align: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
         .menu a {
             color: white;
@@ -40,64 +43,66 @@
         .banner {
             background: linear-gradient(135deg, #2e7d32 0%, #81c784 100%);
             color: white;
-            padding: 50px 20px;
+            padding: 60px 20px;
             text-align: center;
         }
 
-        /* CONTAINER CHÍNH */
+        /* CONTAINER CHÍNH - FIX LỖI CHIA CỘT */
         .main-content {
             display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 20px;
+            grid-template-columns: 2fr 1fr; /* Chia 2 cột rõ rệt */
+            gap: 25px;
             max-width: 1100px;
-            margin: 20px auto;
+            margin: 30px auto;
             padding: 0 20px;
+            align-items: start;
         }
 
         .card {
             background: white;
-            padding: 20px;
-            border-radius: 10px;
+            padding: 25px;
+            border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             margin-bottom: 20px;
         }
 
         h2 {
             color: var(--primary-color);
-            border-left: 4px solid var(--primary-color);
-            padding-left: 10px;
+            border-left: 5px solid var(--primary-color);
+            padding-left: 15px;
             margin-top: 0;
+            font-size: 1.4em;
         }
 
-        /* PHẦN TIN TỨC CUỘN TỰ ĐỘNG */
+        /* TIN TỨC CUỘN */
         .news-scroll-container {
-            height: 250px; /* Chiều cao vùng hiển thị */
+            height: 280px;
             overflow: hidden;
             position: relative;
             border: 1px solid #eee;
-            border-radius: 5px;
+            border-radius: 8px;
             background: #fff;
         }
 
         .news-content {
             position: absolute;
             width: 100%;
-            animation: scrollUp 15s linear infinite; /* Chạy liên tục */
+            animation: scrollUp 20s linear infinite;
         }
 
-        /* Khi rê chuột vào thì dừng lại */
         .news-scroll-container:hover .news-content {
             animation-play-state: paused;
         }
 
         .news-item {
             padding: 15px;
-            border-bottom: 1px dashed #ddd;
+            border-bottom: 1px dashed #eee;
         }
         .news-item a {
             text-decoration: none;
             color: var(--text-color);
             font-weight: 500;
+            display: block;
         }
         .news-item a:hover {
             color: var(--primary-color);
@@ -105,7 +110,7 @@
 
         @keyframes scrollUp {
             0% { top: 0; }
-            100% { top: -100%; } /* Điều chỉnh tùy theo số lượng tin */
+            100% { top: -100%; }
         }
 
         /* THÔNG BÁO TIÊM CHỦNG */
@@ -115,7 +120,7 @@
             text-align: center;
         }
         .highlight-date {
-            font-size: 1.5em;
+            font-size: 2em;
             color: #d32f2f;
             font-weight: bold;
             display: block;
@@ -127,12 +132,12 @@
             background: var(--primary-color);
             color: white;
             text-align: center;
-            padding: 20px;
-            margin-top: 40px;
+            padding: 30px;
+            margin-top: 50px;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
+        /* Responsive cho Mobile */
+        @media (max-width: 850px) {
             .main-content { grid-template-columns: 1fr; }
         }
     </style>
@@ -148,10 +153,11 @@
     
     <div class="banner">
         <h1>TRẠM Y TẾ PHƯỜNG THỚI SƠN</h1>
-        <p>Chăm sóc sức khỏe cộng đồng - Tận tâm, chu đáo</p>
+        <p>Tận tâm chăm sóc - Nâng tầm sức khỏe cộng đồng</p>
     </div>
 
     <div class="main-content">
+        <!-- CỘT TRÁI -->
         <div class="left-col">
             <div class="card">
                 <h2>Công tác Trạm Y tế</h2>
@@ -159,13 +165,18 @@
                     <h3>Khám sức khỏe định kỳ</h3>
                     <p>Trạm y tế tổ chức khám sức khỏe miễn phí cho người dân vào ngày 10/6 sắp tới. Kính mời bà con đến đúng giờ.</p>
                 </div>
-                <div class="post" style="border-top: 1px solid #eee; padding-top: 15px;">
+                <div class="post" style="border-top: 1px solid #eee; margin-top: 15px; padding-top: 15px;">
                     <h3>Công tác vệ sinh môi trường</h3>
                     <p>Phối hợp với đoàn thanh niên ra quân dọn dẹp vệ sinh đường làng ngõ xóm, đảm bảo môi trường sống trong lành.</p>
                 </div>
+                <div class="post" style="border-top: 1px solid #eee; margin-top: 15px; padding-top: 15px;">
+                    <h3>Quản lý sức khỏe người cao tuổi</h3>
+                    <p>Lập hồ sơ theo dõi sức khỏe và tư vấn chế độ dinh dưỡng cho người cao tuổi trên địa bàn phường.</p>
+                </div>
             </div>
-        </div>́
+        </div>
 
+        <!-- CỘT PHẢI -->
         <div class="right-col">
             <div class="card vaccine-box">
                 <h2>Lịch Tiêm Chủng</h2>
@@ -178,24 +189,13 @@
                 <h2>Tin tức mới</h2>
                 <div class="news-scroll-container">
                     <div class="news-content">
-                        <div class="news-item">
-                            <a href="#">• Hướng dẫn chăm sóc trẻ khi giao mùa</a>
-                        </div>
-                        <div class="news-item">
-                            <a href="#">• Thông báo về việc cấp thẻ BHYT mới</a>
-                        </div>
-                        <div class="news-item">
-                            <a href="#">• Cách nhận biết thực phẩm an toàn</a>
-                        </div>
-                        <div class="news-item">
-                            <a href="#">• Tầm quan trọng của việc tập thể dục</a>
-                        </div>
-                        <div class="news-item">
-                            <a href="#">• Thông tin về chương trình sữa học đường</a>
-                        </div>
-                        <div class="news-item">
-                            <a href="#">• Hướng dẫn chăm sóc trẻ khi giao mùa</a>
-                        </div>
+                        <div class="news-item"><a href="#">• Hướng dẫn chăm sóc trẻ khi giao mùa</a></div>
+                        <div class="news-item"><a href="#">• Thông báo về việc cấp thẻ BHYT mới</a></div>
+                        <div class="news-item"><a href="#">• Cách nhận biết thực phẩm an toàn</a></div>
+                        <div class="news-item"><a href="#">• Tầm quan trọng của việc tập thể dục</a></div>
+                        <div class="news-item"><a href="#">• Thông tin về chương trình sữa học đường</a></div>
+                        <!-- Lặp lại tin đầu để cuộn mượt hơn -->
+                        <div class="news-item"><a href="#">• Hướng dẫn chăm sóc trẻ khi giao mùa</a></div>
                     </div>
                 </div>
             </div>
@@ -203,7 +203,8 @@
     </div>
 
     <div class="footer">
-        <p>© 2026 Trạm Y Tế Phường Thới Sơn| Hotline hỗ trợ: 0123 456 789</p>
+        <p>© 2026 Trạm Y Tế Phường Thới Sơn | Hotline hỗ trợ: 0123 456 789</p>
+        <p><small>Địa chỉ: Phường Thới Sơn, TP. Châu Đốc, An Giang</small></p>
     </div>
 
 </body>
